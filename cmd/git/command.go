@@ -1,32 +1,22 @@
 package git
 
 import (
-	"bufio"
+	// "bufio"
 	"bytes"
 	"fmt"
 	"os/exec"
 )
 
-func ControlChange() bool {
+func ControlChange() bytes.Buffer {
 	comm := exec.Command("git", "status")
 	fmt.Println(comm)
 
-	var a bytes.Buffer
-	var c bytes.Buffer
+	var buff = bytes.Buffer{}
 
-	var r = bufio.NewReader(&c)
-	var b = bufio.NewWriter(&a)
-
-	var rb = bufio.NewReadWriter(r, b)
-
-	comm.Stdout = rb
+	comm.Stdout = &buff
 
 	err := comm.Run()
 	fmt.Println(err)
 
-	var prova = make([]byte, 5)
-	rb.Read(prova)
-	fmt.Println(prova)
-
-	return false
+	return buff
 }
