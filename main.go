@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 
 	"github.com/mattemello/orgToTodoist/cmd/git"
+	"github.com/mattemello/orgToTodoist/cmd/parse"
 )
 
 func main() {
@@ -35,21 +35,11 @@ func main() {
 		strCont += strTmp
 	}
 
-	indexMod := strings.Index(strCont, "modified: ")
-	if indexMod == -1 {
-		// todo: there are no modified, so need to do something?
+	file := parse.ParseAdd(strCont)
+
+	if file != nil {
+		fmt.Println(file)
 	}
-	indexAdd := strings.Index(strCont, "new file: ")
-	if indexMod == -1 {
-		// todo: there are no modified, so need to do something?
-	}
-
-	var whereToTake int
-	whereToTake = min(indexMod, indexAdd)
-
-	usefulCont := strCont[whereToTake:]
-
-	fmt.Println(usefulCont)
 
 	//exec.Command("git", "add", ".")
 
