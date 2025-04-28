@@ -7,6 +7,8 @@ import (
 )
 
 func ControlChange() bytes.Buffer {
+	commAdd := exec.Command("git", "add", ".")
+	_ = commAdd.Run()
 	comm := exec.Command("git", "status")
 
 	var buff = bytes.Buffer{}
