@@ -27,6 +27,7 @@ func main() {
 				}
 			}
 
+			fmt.Println(elem[0])
 			if (elem[0] == '"' || elem[0] == '\'') && isMessage {
 				message = elem
 			}
@@ -58,7 +59,7 @@ func main() {
 
 	if file != nil {
 
-		//git.CommitChange(message)
+		git.CommitChange(message)
 		if git.ControlRemote() {
 			git.Push()
 		}
