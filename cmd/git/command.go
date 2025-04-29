@@ -3,8 +3,17 @@ package git
 import (
 	"bytes"
 	"log"
+	"os"
 	"os/exec"
 )
+
+func Push() {
+	commAdd := exec.Command("git", "push")
+	err := commAdd.Run()
+	if err != nil {
+		log.Fatal("Error in the Run of the command 'git add'", err)
+	}
+}
 
 func ControlChange() bytes.Buffer {
 	commAdd := exec.Command("git", "add", ".")
@@ -31,4 +40,13 @@ func CommitChange(message string) {
 	if err != nil {
 		log.Fatal("Error in the Run of the command 'git add'", err)
 	}
+}
+
+func ControlRemote() bool {
+	direc, err := os.Getwd()
+	if err != nil {
+		return false
+	}
+	_, err = os.Open(direc + "/.git/logs/refs/remotes")
+	return err == nil
 }

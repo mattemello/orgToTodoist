@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	fmt.Println(git.ControlRemote())
 	args := os.Args[1:]
 	message := "todo"
 
@@ -56,10 +57,12 @@ func main() {
 	file := parse.ParseAdd(strCont)
 
 	if file != nil {
-		git.CommitChange(message)
+
+		//git.CommitChange(message)
+		if git.ControlRemote() {
+			git.Push()
+		}
 		fmt.Println(file)
 	}
-
-	//exec.Command("git", "add", ".")
 
 }
