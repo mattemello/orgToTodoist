@@ -27,8 +27,8 @@ func main() {
 				}
 			}
 
-			fmt.Println(elem[0])
-			if (elem[0] == 101 || elem[0] == '\'') && isMessage {
+			fmt.Println(elem)
+			if (elem[0] == 101 || elem[0] == ) && isMessage {
 				message = elem
 			}
 		}
