@@ -11,10 +11,28 @@ import (
 
 func main() {
 	args := os.Args[1:]
+	message := "todo"
 
 	if len(args) > 0 {
-		// todo: here control the tags
+		isMessage := false
+		for _, elem := range args {
+			if elem[0] == '-' {
+				switch elem[1] {
+
+				case 'm':
+					isMessage = true
+					break
+
+				}
+			}
+
+			if (elem[0] == '"' || elem[0] == '\'') && isMessage {
+				message = elem
+			}
+		}
 	}
+
+	fmt.Println(message)
 
 	control := git.ControlChange()
 
@@ -38,6 +56,7 @@ func main() {
 	file := parse.ParseAdd(strCont)
 
 	if file != nil {
+		git.CommitChange(message)
 		fmt.Println(file)
 	}
 
