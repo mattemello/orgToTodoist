@@ -62,7 +62,11 @@ func main() {
 		if git.ControlRemote() {
 			git.Push()
 		}
-		fmt.Println(file)
+
+		for _, fi := range file {
+			changed := git.TakeChange(fi)
+		}
+
 	}
 
 }

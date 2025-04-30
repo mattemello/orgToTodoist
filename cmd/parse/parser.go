@@ -30,7 +30,9 @@ func ParseAdd(strCont string) []string {
 		var file []string
 
 		for i := 0; i < len(separeCont); i += 2 {
-			file = append(file, separeCont[i+1])
+			if strings.Contains(separeCont[i+1], ".org") {
+				file = append(file, separeCont[i+1])
+			}
 		}
 
 		return file
